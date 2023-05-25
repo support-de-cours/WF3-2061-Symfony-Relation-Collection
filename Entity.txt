@@ -1,0 +1,17 @@
+Player
+-- 
+firstname
+lastname
+
+Team
+--
+name
+player      (plusieurs joueurs)
+
+Game
+--
+date
+team_a
+team_b
+score_a
+score_b
