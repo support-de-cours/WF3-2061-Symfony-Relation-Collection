@@ -2,8 +2,9 @@
 
 namespace App\Entity;
 
-use App\Repository\PlayerRepository;
+use App\Entity\Team;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PlayerRepository;
 
 #[ORM\Entity(repositoryClass: PlayerRepository::class)]
 class Player
@@ -22,15 +23,6 @@ class Player
     #[ORM\ManyToOne(inversedBy: 'players')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Team $team = null;
-
-
-
-
-
-
-
-
-
 
 
 
