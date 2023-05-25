@@ -16,6 +16,14 @@
                 <td>{{ game.date ? game.date|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
+                <th>Team A</th>
+                <td>{{ game.teamA.name }}</td>
+            </tr>
+            <tr>
+                <th>Team B</th>
+                <td>{{ game.teamB.name }}</td>
+            </tr>
+            <tr>
                 <th>Score_a</th>
                 <td>{{ game.scoreA }}</td>
             </tr>

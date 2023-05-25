@@ -10,8 +10,12 @@
             <tr>
                 <th>Id</th>
                 <th>Date</th>
+                <th>Team A</th>
+                <th>Team B</th>
                 <th>Score_a</th>
                 <th>Score_b</th>
+                <th>players A</th>
+                <th>players B</th>
                 <th>actions</th>
             </tr>
         </thead>
@@ -20,8 +24,27 @@
             <tr>
                 <td>{{ game.id }}</td>
                 <td>{{ game.date ? game.date|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ game.teamA.name }}</td>
+                <td>{{ game.teamB.name }}</td>
                 <td>{{ game.scoreA }}</td>
                 <td>{{ game.scoreB }}</td>
+                <td>{{ game.scoreB }}</td>
+
+                <td>
+                    <ul>
+                        {% for player in game.teamA.players %}
+                        <li>{{ player.firstname }} {{ player.lastname }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        {% for player in game.teamB.players %}
+                        <li>{{ player.firstname }} {{ player.lastname }}</li>
+                        {% endfor %}
+                    </ul>
+                </td>
+
                 <td>
                     <a href="{{ path('app_game_show', {'id': game.id}) }}">show</a>
                     <a href="{{ path('app_game_edit', {'id': game.id}) }}">edit</a>
