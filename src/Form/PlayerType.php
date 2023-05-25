@@ -16,10 +16,14 @@ class PlayerType extends AbstractType
         $builder
             ->add('firstname')
             ->add('lastname')
+
             ->add('team', EntityType::class, [
                 // Definition de l'entité
                 'class' => Team::class,
-                'choice_label' => "name"
+                // 'choice_label' => "name",
+                'choice_label' => function (Team $team) {
+                    return $team->getName() . ' - ' . $team->getCountry();
+                },
             ])
         ;
     }

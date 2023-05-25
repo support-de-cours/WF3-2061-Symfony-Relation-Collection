@@ -27,6 +27,9 @@ class Team
     #[ORM\OneToMany(mappedBy: 'team_b', targetEntity: Game::class)]
     private Collection $games_b;
 
+    #[ORM\Column(length: 2, nullable: true, options: ['fixed' => true])]
+    private ?string $country = null;
+
     public function __construct()
     {
         $this->players = new ArrayCollection();
@@ -137,6 +140,18 @@ class Team
                 $gamesB->setTeamB(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getCountry(): ?string
+    {
+        return $this->country;
+    }
+
+    public function setCountry(?string $country): self
+    {
+        $this->country = $country;
 
         return $this;
     }
