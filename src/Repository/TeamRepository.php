@@ -39,19 +39,29 @@ class TeamRepository extends ServiceEntityRepository
         }
     }
 
+    public function teamAlphabetical()
+    {
+        return $this->createQueryBuilder('t1') // t1 = alias de la table "team"
+            ->orderBy('t1.name', 'ASC')
+            ->getQuery()
+            ->execute()
+        ;
+    }
+
 //    /**
 //     * @return Team[] Returns an array of Team objects
 //     */
 //    public function findByExampleField($value): array
 //    {
-//        return $this->createQueryBuilder('t')
-//            ->andWhere('t.exampleField = :val')
+//        return $this->createQueryBuilder('t') // SELECT * FORM `team`
+//            ->andWhere('t.exampleField = :val') // WHERE `exampleField`=$value
 //            ->setParameter('val', $value)
-//            ->orderBy('t.id', 'ASC')
-//            ->setMaxResults(10)
+//            ->orderBy('t.id', 'ASC') // ORDER BY `id` ASC
+//            ->setMaxResults(10) // LIMIT 0,10
 //            ->getQuery()
 //            ->getResult()
 //        ;
+//          SELECT * FORM `team` WHERE `exampleField`=$value ORDER BY `id` ASC LIMIT 0,10
 //    }
 
 //    public function findOneBySomeField($value): ?Team

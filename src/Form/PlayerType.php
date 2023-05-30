@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Player;
 use App\Entity\Team;
+use App\Repository\TeamRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -11,6 +12,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class PlayerType extends AbstractType
 {
+    /**
+     * Team Repository
+     *
+     * @var TeamRepository
+     */
+    private TeamRepository $teamRepository;
+
+    public function __construct(TeamRepository $teamRepository)
+    {
+        $this->teamRepository = $teamRepository;
+    }
+
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
@@ -24,6 +37,7 @@ class PlayerType extends AbstractType
                 'choice_label' => function (Team $team) {
                     return $team->getName() . ' - ' . $team->getCountry();
                 },
+                'choices' => $this->teamRepository->teamAlphabetical()
             ])
         ;
     }
